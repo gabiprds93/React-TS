@@ -1,5 +1,3 @@
-import { Action } from 'redux'
-
 import {CALL_API} from '../constants/api'
 import {generalFetch} from '../utils/generalFetch'
 
@@ -20,9 +18,10 @@ const api = (store: { getState: () => any }) => (next: (action: any) => any) => 
 
   try {
     return generalFetch(method, endpoint).then(response => {
+      console.log('response', response)
       return next({
         type: successType,
-        payload: response,
+        payload: response.movies,
       })
     })
   } catch (err) {
@@ -31,7 +30,6 @@ const api = (store: { getState: () => any }) => (next: (action: any) => any) => 
       type: errorType,
       error: err,
     })
-    throw err
   }
 }
 

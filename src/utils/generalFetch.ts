@@ -5,5 +5,5 @@ export const generalFetch = (
   
   return fetch(endpoint, {
     method: method,
-  })
+  }).then(result => result.json())
 }

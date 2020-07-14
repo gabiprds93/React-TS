@@ -6,7 +6,7 @@ const initialState = {
   error: null
 }
 
-export const authReducer = (state = initialState, action: MoviesActionTypes) => {
+export const moviesReducer = (state = initialState, action: MoviesActionTypes) => {
   switch(action.type){
     case MOVIES_LIST_REQUEST:
       return Object.assign({}, state, {

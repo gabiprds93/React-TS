@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import Title from '../components/atoms/Title';
 import Description from '../components/atoms/Description';
 import Select from '../components/atoms/Select';
-import {changeLanguage} from '../redux/actions/languageAction'
+import {changeLanguage} from '../redux/actions/languageAction';
+import { getMoviesList } from '../redux/actions/moviesAction';
 
 const langOptions = [ 
   {
@@ -20,10 +21,11 @@ const langOptions = [
   }
 ]
 
-const HomeContainer: React.FC<any> = ({changeLanguage}) => {
+const HomeContainer: React.FC<any> = ({changeLanguage, getMoviesList}) => {
   React.useEffect(() => {
+    getMoviesList()
     handleChange('es')
-  }, [])
+  },)
 
   const { t, i18n } = useTranslation();
 
@@ -36,7 +38,7 @@ const HomeContainer: React.FC<any> = ({changeLanguage}) => {
     <div>
       <Title>{t('title')}</Title>
       <Description>{t('description')}</Description>
-      
+
       <Select 
         options={langOptions} 
         onChange={(e:React.ChangeEvent<HTMLSelectElement>) => handleChange(e.target.value)}
@@ -46,7 +48,6 @@ const HomeContainer: React.FC<any> = ({changeLanguage}) => {
   )
 }
 
-const mapDispatchToProps = { changeLanguage }
-
+const mapDispatchToProps = { changeLanguage, getMoviesList }
 
 export default connect(null, mapDispatchToProps)(HomeContainer)
