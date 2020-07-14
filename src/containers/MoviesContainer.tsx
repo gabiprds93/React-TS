@@ -7,25 +7,13 @@ import Description from '../components/atoms/Description';
 import Select from '../components/atoms/Select';
 import {changeLanguage} from '../redux/actions/languageAction';
 import { getMoviesList } from '../redux/actions/moviesAction';
+import { AppState } from '../redux/reducers';
 
-const langOptions = [ 
-  {
-    value: 'es',
-    text: 'Español',
-    selected: true
-  },
-  {
-    value: 'en',
-    text: 'English',
-    selected: false
-  }
-]
-
-const HomeContainer: React.FC<any> = ({changeLanguage, getMoviesList}) => {
+const MoviesContainer: React.FC<any> = ({changeLanguage, getMoviesList}) => {
   React.useEffect(() => {
     getMoviesList()
     handleChange('es')
-  },)
+  }, [])
 
   const { t, i18n } = useTranslation();
 
@@ -36,18 +24,17 @@ const HomeContainer: React.FC<any> = ({changeLanguage, getMoviesList}) => {
 
   return(
     <div>
-      <Title>{t('title')}</Title>
-      <Description>{t('description')}</Description>
-
-      <Select 
-        options={langOptions} 
-        onChange={(e:React.ChangeEvent<HTMLSelectElement>) => handleChange(e.target.value)}
-      />
+      <Title>{t('moviesTitle')}</Title>
+      <Description>{t('moviesDescription')}</Description>
       
     </div>
   )
 }
 
+const mapStateToProps = (state: AppState) => ({
+  movies: state.movies
+})
+
 const mapDispatchToProps = { changeLanguage, getMoviesList }
 
-export default connect(null, mapDispatchToProps)(HomeContainer)
+export default connect(null, mapDispatchToProps)(MoviesContainer)
