@@ -2,7 +2,7 @@ import {MOVIES_LIST_REQUEST, MOVIES_LIST_SUCCESS, MOVIES_LIST_FAILURE, MoviesAct
 
 const initialState = {
   isLoading: false,
-  data: {},
+  data: null,
   error: null
 }
 
@@ -11,7 +11,7 @@ export const moviesReducer = (state = initialState, action: MoviesActionTypes) =
     case MOVIES_LIST_REQUEST:
       return Object.assign({}, state, {
         isLoading: true,
-        data: {},
+        data: null,
         error: null,
       })
 
@@ -25,7 +25,7 @@ export const moviesReducer = (state = initialState, action: MoviesActionTypes) =
     case MOVIES_LIST_FAILURE:
       return Object.assign({}, state, {
         isLoading: false,
-        data: {},
+        data: null,
         error: action.error,
       })
 

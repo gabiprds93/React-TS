@@ -8,6 +8,7 @@ interface IMoviesListProps {
 }
 
 const MoviesList: React.FC<IMoviesListProps> = ({movies}) => {
+  console.log(movies)
   return(
     <ul>
       {movies.map((item, index) => {
